@@ -27,7 +27,7 @@ public class ColisionModel implements Runnable, Observable{
 	
 	public void populateModel(){
 		
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 75; i++) {
 			addNewParticle();
 		}
 		
@@ -51,9 +51,9 @@ public class ColisionModel implements Runnable, Observable{
 	private void addNewParticle(){
 		Random r = new Random();
 		Particle particle = new Particle(
-				new Vector2D(((double)r.nextInt(5))/10d, ((double)r.nextInt(5))/10d), 
+				new Vector2D(((double)r.nextInt(4))/10d, ((double)r.nextInt(4))/10d), 
 				new Point(r.nextInt(450)+20,r.nextInt(450)+20),
-				10, 
+				5, 
 				5);	
 		engine.addParticles(particle);
 	}
@@ -75,7 +75,7 @@ public class ColisionModel implements Runnable, Observable{
 				engine.changeStatesAll();
 				clock++;
 				notifyAll("Clock change");
-				Thread.sleep(1);
+				Thread.sleep(0);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

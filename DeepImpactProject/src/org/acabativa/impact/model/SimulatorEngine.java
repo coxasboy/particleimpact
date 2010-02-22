@@ -7,6 +7,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import javax.lang.model.element.Element;
+
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
@@ -45,7 +47,12 @@ public class SimulatorEngine {
 					particle.setVelocity(velocityParticle);
 					particleElement.setVelocity(velocityElement);
 					while(particle.conflicts(particleElement)){
-						iterateAll();
+						if(particle.getVelocity().getNorm()>particleElement.getVelocity().getNorm()){
+						iterate(particle);
+						}
+						else{
+							iterate(particleElement);
+						}
 					}
 				}
 			}

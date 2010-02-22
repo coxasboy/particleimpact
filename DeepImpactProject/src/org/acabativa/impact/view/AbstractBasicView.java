@@ -23,7 +23,7 @@ public abstract class AbstractBasicView extends JPanel implements ActionListener
 		this.controller = controller;
 		this.model = model;
 		model.addObserver(this);
-		frame = new JFrame("TS Experiment");
+		frame = new JFrame("Particle Experiment");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		System.out.println(getWidth());
 		System.out.println(getHeight());

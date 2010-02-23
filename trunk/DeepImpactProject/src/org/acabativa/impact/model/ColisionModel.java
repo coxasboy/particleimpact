@@ -10,7 +10,7 @@ import org.apache.log4j.Logger;
 
 public class ColisionModel implements Runnable, Observable{
 
-	protected int MAX_WIDTH = 500;
+	protected int MAX_WIDTH = 1200;
 	protected int MAX_HEIGHT = 500;
 	int clock = 0;
 	boolean modelOn = true;

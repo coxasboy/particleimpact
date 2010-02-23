@@ -16,7 +16,7 @@ public class SimulatorEngine {
 
 	Logger logger = Logger.getLogger(SimulatorEngine.class);
 	double increaseEnergy = 1;
-	double pass = 0.001;
+	double pass = 0.01;
 	
 	boolean modelOn = true;
 	List<Particle> particles = new ArrayList<Particle>();
@@ -40,11 +40,11 @@ public class SimulatorEngine {
 	}
 	
 	private void increaseEnergy(){
-		increaseEnergy = increaseEnergy + pass;
+		increaseEnergy = 1 + pass;
 	}
 	
 	private void decreaseEnergy(){
-		increaseEnergy = increaseEnergy - pass;
+		increaseEnergy = 1 - pass;
 	}
 	
 	public void removeEnergyFromTheSystem(){

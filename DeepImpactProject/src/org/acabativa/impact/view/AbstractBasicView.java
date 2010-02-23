@@ -17,7 +17,7 @@ public abstract class AbstractBasicView extends JPanel implements ActionListener
 	public static final int MAX_HEIGHT = 500;
 	ColisionController controller;
 	ColisionModel model;
-	JFrame frame;
+	protected JFrame frame;
 			
 	public AbstractBasicView(ColisionController controller, ColisionModel model) {
 		this.controller = controller;
@@ -29,7 +29,7 @@ public abstract class AbstractBasicView extends JPanel implements ActionListener
 		System.out.println(getHeight());
 		frame.setSize(getWidthFrame() + 17 , getHeightFrame() + 37);
 		frame.add(this);
-		frame.setVisible(true);
+		
 	}
 	
 	protected abstract int getWidthFrame();

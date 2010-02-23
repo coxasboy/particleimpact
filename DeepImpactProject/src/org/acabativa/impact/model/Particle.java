@@ -5,7 +5,7 @@ package org.acabativa.impact.model;
 import org.apache.log4j.Logger;
 
 public class Particle {
-	
+		
 	Logger logger = Logger.getLogger(Particle.class);
 
 	private static int particlesCounter = 1;

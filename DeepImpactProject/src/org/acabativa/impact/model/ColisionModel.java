@@ -14,47 +14,62 @@ public class ColisionModel implements Runnable, Observable{
 	protected int MAX_HEIGHT = 500;
 	int clock = 0;
 	boolean modelOn = true;
-	SimulatorEngine engine = new SimulatorEngine();
+	SimulatorEngine engine;
 	
 	List<Observer> observers = new ArrayList<Observer>(); 
 	
 	Logger logger = Logger.getLogger(ColisionModel.class);
 	
 	public ColisionModel() {
-		engine = new SimulatorEngine();
+		engine = new SimulatorEngine(MAX_WIDTH, MAX_HEIGHT);
 		populateModel();
 	}
 	
 	public void populateModel(){
 		
-		for (int i = 0; i < 75; i++) {
+		for (int i = 0; i < 200; i++) {
 			addNewParticle();
 		}
 		
-		for (int i = 10; i < 480; i = i+21) {
-			engine.addParticles(getExtraHeavyParticle(0,i));
-		}
-
-		for (int i = 20; i < 500; i = i+21) {
-			engine.addParticles(getExtraHeavyParticle(500,i));
-		}
-		
-		for (int i = 20; i < 500; i = i+21) {
-			engine.addParticles(getExtraHeavyParticle(i,0));
-		}
-		for (int i = 0; i < 500; i = i+21) {
-			engine.addParticles(getExtraHeavyParticle(i,500));
-		}
+//		for (int i = 10; i < 480; i = i+21) {
+//			engine.addParticles(getExtraHeavyParticle(0,i));
+//		}
+//
+//		for (int i = 20; i < 500; i = i+21) {
+//			engine.addParticles(getExtraHeavyParticle(500,i));
+//		}
+//		
+//		for (int i = 20; i < 500; i = i+21) {
+//			engine.addParticles(getExtraHeavyParticle(i,0));
+//		}
+//		for (int i = 0; i < 500; i = i+21) {
+//			engine.addParticles(getExtraHeavyParticle(i,500));
+//		}
 		
 	}	
 	
+	public double getAllEnergy(){
+		return engine.getAllEnergy();
+	}
+	
+	public void addEnergy(){
+		engine.addEnergyToTheSystem();
+		this.notifyAll("Change Energy");
+	}
+	
+	public void removeEnergy(){
+		engine.removeEnergyFromTheSystem();
+		this.notifyAll("Change Energy");
+	}
+	
 	private void addNewParticle(){
 		Random r = new Random();
+		int addSize = r.nextInt(3);
 		Particle particle = new Particle(
 				new Vector2D(((double)r.nextInt(4))/10d, ((double)r.nextInt(4))/10d), 
 				new Point(r.nextInt(450)+20,r.nextInt(450)+20),
-				5, 
-				5);	
+				5+addSize, 
+				5-addSize);	
 		engine.addParticles(particle);
 	}
 	

@@ -14,7 +14,7 @@ public class EnergyView extends AbstractBasicView {
 	
 	public EnergyView(ColisionController controller, ColisionModel model) {
 		super(controller, model);
-		frame.setLocation(534,0);
+		frame.setLocation(534,600);
 		frame.setSize(150,130);
 		frame.setVisible(true);
 	}

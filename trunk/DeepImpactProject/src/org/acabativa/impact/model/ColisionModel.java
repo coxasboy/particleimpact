@@ -15,6 +15,10 @@ public class ColisionModel implements Runnable, Observable{
 	int clock = 0;
 	boolean modelOn = true;
 	SimulatorEngine engine;
+	int fps = 400;
+	int auxFps = 120;
+	int pass = 1000/fps;
+	int waitTime = 0;
 	
 	List<Observer> observers = new ArrayList<Observer>(); 
 	
@@ -85,16 +89,37 @@ public class ColisionModel implements Runnable, Observable{
 	public void run() {
 		while(modelOn){
 			try {
-//				logger.info("Model Clock: " + clock);
+				long startProcessAt = System.currentTimeMillis();
 				engine.iterateAll();
 				engine.changeStatesAll();
 				clock++;
 				notifyAll("Clock change");
-				Thread.sleep(0);
+				long endProcessAt = System.currentTimeMillis();
+				long diff = endProcessAt - startProcessAt;
+				if(diff>pass){
+					auxFps = (int)diff;
+//					System.out.println(auxFps);
+					waitTime = 1000/(int)diff;
+					continue;
+				}
+				else{
+					auxFps = fps;
+//					System.out.println(auxFps);
+					waitTime = pass-(int)diff;
+					Thread.sleep(pass);
+				}
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}		
+	}
+	
+	public int getFramesPerSecond(){
+		return auxFps;
+	}
+	
+	public int getWaitTime(){
+		return waitTime;
 	}
 	
 	public List<Particle> getAllParticles(){

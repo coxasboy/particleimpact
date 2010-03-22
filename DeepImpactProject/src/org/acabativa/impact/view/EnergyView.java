@@ -6,16 +6,18 @@ import java.awt.Graphics2D;
 import org.acabativa.impact.controller.ColisionController;
 import org.acabativa.impact.model.ColisionModel;
 import org.acabativa.impact.view.drawer.EnergyDrawer;
+import org.acabativa.impact.view.drawer.FPSDrawer;
 
 
 public class EnergyView extends AbstractBasicView {
 
 	EnergyDrawer drawer = new EnergyDrawer();
+	FPSDrawer drawerfps = new FPSDrawer();
 	
 	public EnergyView(ColisionController controller, ColisionModel model) {
 		super(controller, model);
 		frame.setLocation(534,600);
-		frame.setSize(150,130);
+		frame.setSize(150,160);
 		frame.setVisible(true);
 	}
 	
@@ -24,6 +26,7 @@ public class EnergyView extends AbstractBasicView {
 		Graphics2D g2d = (Graphics2D) g;
 		try {
 			drawer.draw(g2d, model.getAllEnergy());
+			drawerfps.draw(g2d, model.getFramesPerSecond());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
